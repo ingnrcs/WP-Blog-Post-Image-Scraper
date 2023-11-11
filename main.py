@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, unquote
 
 # Configuración de la URL del sitio
-wordpress_url = 'https://thefinngroup.com.au/finn-blog/'
+wordpress_url = 'https://tuweb.com/blog/'
 
 # Ruta local para guardar las imágenes
 image_folder = os.path.join(os.getcwd(), 'export', 'imagenes')
