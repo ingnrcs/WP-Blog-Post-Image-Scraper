@@ -27,7 +27,7 @@ Configuración del Script
 
 ```bash
 # Configuración de la URL del sitio
-wordpress_url = 'https://thefinngroup.com.au/finn-blog/'
+wordpress_url = 'https://webdestino.com/blog/'
 
 # Ruta local para guardar las imágenes
 image_folder = os.path.join(os.getcwd(), 'export', 'images')
