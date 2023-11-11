@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, unquote
 
 # Configuración de la URL del sitio
-wordpress_url = 'https://tusitioweb.com/blog/'
+wordpress_url = 'https://thefinngroup.com.au/finn-blog/'
 
 # Ruta local para guardar las imágenes
-image_folder = os.path.join(os.getcwd(), 'export', 'images_new')
+image_folder = os.path.join(os.getcwd(), 'export', 'imagenes')
 
 # Crear directorio de imágenes si no existe
 os.makedirs(image_folder, exist_ok=True)
@@ -27,7 +27,7 @@ while True:
     print(f'Procesando la página {page_number}...')
 
     # Encontrar enlaces a las páginas de cada post
-    post_links = [a['href'] for a in soup.find_all('a', class_='link-to-post')]
+    post_links = [a['href'] for a in soup.find_all('a', class_='finn-btn')]
 
     # Contador de posts procesados en la página actual
     posts_processed = 0
@@ -40,55 +40,29 @@ while True:
         post_html_content = post_response.content
         post_soup = BeautifulSoup(post_html_content, 'html.parser')
 
+        # Obtener el título del post
+        post_title_element = post_soup.find('h1', class_='wp-block-post-title')
+        post_title = post_title_element.text.strip() if post_title_element else 'Título no encontrado'
+
+        print(f'Título del post: {post_title}')
+
+        # Resto del código para procesar imágenes...
+
         # Obtener la imagen destacada
         featured_image = post_soup.find('img', class_='link-to-post')
 
         if featured_image:
             featured_image_url = featured_image['src']
-            # Verificar si la URL contiene "/collect/" antes de continuar
-            if "/collect/" in featured_image_url:
-                print(f'Se omite la imagen destacada: {featured_image_url}')
-            else:
-                # Descargar y guardar la imagen destacada si no existe localmente
-                featured_image_filename = os.path.join(image_folder, os.path.basename(urlparse(featured_image_url).path))
-                if not os.path.exists(featured_image_filename):
-                    os.makedirs(os.path.dirname(featured_image_filename), exist_ok=True)  # Crear carpetas si no existen
-                    featured_image_data = requests.get(featured_image_url).content
-                    with open(featured_image_filename, 'wb') as img_file:
-                        img_file.write(featured_image_data)
-                        print(f'Imagen destacada guardada: {featured_image_filename}')
-                        posts_processed += 1
+            # Resto del código para procesar la imagen destacada...
 
         # Obtener las imágenes internas
         internal_images = post_soup.find_all('img')
 
         for internal_image in internal_images:
             internal_image_url = internal_image['src']
-            # Verificar si la URL contiene "/collect/" antes de continuar
-            if "/collect/" in internal_image_url:
-                print(f'Se omite la imagen interna: {internal_image_url}')
-            else:
-                # Verificar si la URL es relativa y unirla con la URL del post actual
-                if not urlparse(internal_image_url).scheme:
-                    internal_image_url = urljoin(full_post_url, internal_image_url)
+            # Resto del código para procesar las imágenes internas...
 
-                # Construir la ruta de la imagen interna
-                image_path = urlparse(internal_image_url).path
-                image_path = unquote(image_path)  # Decodificar caracteres especiales en la URL
-                image_path = image_path.lstrip('/').rstrip('/')  # Eliminar barras iniciales y finales
-
-                # Crear las carpetas necesarias
-                image_folder_path = os.path.join(image_folder, image_path)
-                os.makedirs(os.path.dirname(image_folder_path), exist_ok=True)  # Crear carpetas si no existen
-
-                # Descargar y guardar la imagen interna si no existe localmente
-                internal_image_filename = os.path.join(image_folder, image_path.replace('/', '\\'))
-                if not os.path.exists(internal_image_filename):
-                    internal_image_data = requests.get(internal_image_url).content
-                    with open(internal_image_filename, 'wb') as img_file:
-                        img_file.write(internal_image_data)
-                        print(f'Imagen interna guardada: {internal_image_filename}')
-                        posts_processed += 1
+        posts_processed += 1
 
     print(f'Página {page_number} procesada. Total de posts procesados: {posts_processed}')
 
