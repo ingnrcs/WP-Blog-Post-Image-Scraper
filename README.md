@@ -18,7 +18,7 @@ Antes de ejecutar el script, instala las dependencias necesarias ejecutando el s
 ```bash
 pip install requests beautifulsoup4
 
-## Configuración del Script
+Configuración del Script
 Abre el archivo main.py en un editor de texto.
 
 En la sección de configuración (al principio del archivo), modifica las variables según tus necesidades:
