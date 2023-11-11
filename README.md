@@ -5,7 +5,7 @@ Este script de Python está diseñado para extraer automáticamente imágenes de
 
 Este script de Python descarga las imágenes destacadas y las imágenes internas de los posts de un blog de WordPress.
 
-#Caso de Uso
+# Caso de Uso
 
 Este script fue desarrollado en respuesta a la limitación del método convencional de migración de entradas de blog. Dicho método no lograba descargar todas las imágenes asociadas a las entradas de blog durante el proceso de migración. Ante esta situación, se implementó este script para llevar a cabo la descarga de imágenes de las entradas de blog existentes. Posteriormente, la carpeta resultante de imágenes se carga en el servidor, abordando así el problema de enlaces rotos a imágenes en las entradas del blog de WordPress.
 
