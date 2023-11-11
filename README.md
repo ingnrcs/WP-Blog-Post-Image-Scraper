@@ -61,6 +61,9 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para obten
 ```bash
 Este README proporciona instrucciones detalladas sobre cómo configurar y ejecutar el script, así como información sobre la configuración adicional y cómo contribuir al proyecto. Recuerda ajustar los enlaces y detalles específicos según tu situación. ¡Espero que sea útil para tu proyecto!
 ```
+update 11/11/23:
+
+Se han realizado cambios en el script para mostrar la cantidad total de posts procesados en cada página. Además, ahora el script evita la descarga de imágenes que ya han sido guardadas localmente para evitar repeticiones.
 
 by @ignrcs
 
