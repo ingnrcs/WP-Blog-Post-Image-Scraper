@@ -69,6 +69,6 @@ update 11/11/23:
 
 Se han realizado cambios en el script para mostrar la cantidad total de posts procesados en cada página. Además, ahora el script evita la descarga de imágenes que ya han sido guardadas localmente para evitar repeticiones.
 
-by @ignrcs
+by @ingnrcs
 
 
