@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, unquote
 
 # Configuración de la URL del sitio
-wordpress_url = 'https://thefinngroup.com.au/finn-blog/'
+wordpress_url = 'https://tusitioweb.com/blog/'
 
 # Ruta local para guardar las imágenes
-image_folder = os.path.join(os.getcwd(), 'export', 'images')
+image_folder = os.path.join(os.getcwd(), 'export', 'images_new')
 
 # Crear directorio de imágenes si no existe
 os.makedirs(image_folder, exist_ok=True)
@@ -15,7 +15,7 @@ os.makedirs(image_folder, exist_ok=True)
 # Obtener el contenido HTML de la página con el archive de posts
 page_number = 1
 while True:
-    current_page_url = f'{wordpress_url}?page={page_number}'
+    current_page_url = f'{wordpress_url}page/{page_number}/'
     response = requests.get(current_page_url)
 
     if response.status_code != 200:
